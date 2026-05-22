@@ -1,0 +1,14 @@
+cat > .gitignore << 'EOF'
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+
+# Node / Angular
+node_modules/
+dist/
+
+# Sistema
+.DS_Store
+EOF
