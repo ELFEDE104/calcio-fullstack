@@ -1,1 +1,45 @@
-<p>dettaglio-squadra works!</p>
+<div class="container">
+  <a routerLink="/squadre" class="back">← Torna alle squadre</a>
+
+  <div *ngIf="loading" class="loading">Caricamento...</div>
+  <div *ngIf="errore" class="errore">{{ errore }}</div>
+
+  <div *ngIf="squadra">
+    <h1>{{ squadra.nome_squadra }}</h1>
+
+    <div class="sezione">
+      <h2>📋 Informazioni</h2>
+      <p>👤 Capitano: {{ squadra.capitano }}</p>
+      <p>👔 Presidente: {{ squadra.presidente }}</p>
+      <p>🏅 Ranking: {{ squadra.ranking }}</p>
+      <p>🏆 Trofei vinti: {{ squadra.trofei_vinti }}</p>
+      <p>📅 Anno fondazione: {{ squadra.anno_fondazione }}</p>
+      <p>👥 Numero giocatori: {{ squadra.num_giocatori }}</p>
+    </div>
+
+    <div class="sezione" *ngIf="allenatore">
+      <h2>🧑‍💼 Allenatore</h2>
+      <p>{{ allenatore.nome }} {{ allenatore.cognome }}</p>
+      <p>🌍 Nazionalità: {{ allenatore.nazionalita }}</p>
+      <p>🏆 Trofei vinti: {{ allenatore.trofei_vinti }}</p>
+    </div>
+
+    <div class="sezione" *ngIf="sponsor">
+      <h2>💼 Sponsor</h2>
+      <p>{{ sponsor.nome_sponsor }} — {{ sponsor.anni_contratto }} anni</p>
+    </div>
+
+    <div class="sezione">
+      <h2>⚽ Giocatori</h2>
+      <div class="lista-giocatori">
+        <div *ngFor="let g of giocatori" class="giocatore-card">
+          <span class="maglia">#{{ g.num_maglia }}</span>
+          <a [routerLink]="['/giocatori', g.id_giocatore]">
+            {{ g.nome }} {{ g.cognome }}
+          </a>
+          <span class="ruolo">{{ g.ruolo }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

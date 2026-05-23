@@ -1,1 +1,37 @@
-<p>dettaglio-giocatore works!</p>
+<div class="container">
+  <a routerLink="/giocatori" class="back">← Torna ai giocatori</a>
+
+  <div *ngIf="loading" class="loading">Caricamento...</div>
+  <div *ngIf="errore" class="errore">{{ errore }}</div>
+
+  <div *ngIf="giocatore">
+    <h1>#{{ giocatore.num_maglia }} {{ giocatore.nome }} {{ giocatore.cognome }}</h1>
+
+    <div class="sezione">
+      <h2>📋 Informazioni</h2>
+      <p>🎂 Età: {{ giocatore.eta }} anni</p>
+      <p>⚽ Ruolo: {{ giocatore.ruolo }}</p>
+      <p>🌍 Nazionalità: {{ giocatore.nazionalita }}</p>
+      <p>🏟️ Squadra:
+        <a [routerLink]="['/squadre', giocatore.squadra]">{{ giocatore.squadra }}</a>
+      </p>
+    </div>
+
+    <div class="sezione" *ngIf="contratto">
+      <h2>📄 Contratto</h2>
+      <p>💰 Stipendio: {{ contratto.stipendio | number }} €</p>
+      <p>📅 Scadenza: {{ contratto.data_fine }}</p>
+      <p *ngIf="contratto.clausola_rescissoria">
+        🔒 Clausola: {{ contratto.clausola_rescissoria | number }} €
+      </p>
+    </div>
+
+    <div class="sezione" *ngIf="infortuni.length > 0">
+      <h2>🏥 Infortuni</h2>
+      <div *ngFor="let inf of infortuni" class="infortunio-card">
+        <p>{{ inf.tipo_infortunio }} — {{ inf.parte_corpo }}</p>
+        <p>📅 {{ inf.data_infortunio }} | ⏱️ {{ inf.giorni_prognosi }} giorni</p>
+      </div>
+    </div>
+  </div>
+</div>

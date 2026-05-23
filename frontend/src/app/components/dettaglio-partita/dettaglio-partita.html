@@ -1,1 +1,43 @@
-<p>dettaglio-partita works!</p>
+<div class="container">
+  <a routerLink="/partite" class="back">← Torna alle partite</a>
+
+  <div *ngIf="loading" class="loading">Caricamento...</div>
+  <div *ngIf="errore" class="errore">{{ errore }}</div>
+
+  <div *ngIf="partita">
+    <div class="header-partita">
+      <h1>
+        <a [routerLink]="['/squadre', partita.squadra]">{{ partita.squadra }}</a>
+        <span class="vs">VS</span>
+        <a [routerLink]="['/squadre', partita.squadra_ospite]">{{ partita.squadra_ospite }}</a>
+      </h1>
+    </div>
+
+    <div class="sezione">
+      <h2>📋 Informazioni</h2>
+      <p>📅 Data: {{ partita.data_partita }}</p>
+      <p>⏰ Orario: {{ partita.orario_partita }}</p>
+      <p>🏟️ Stadio: {{ partita.nome_stadio }}</p>
+      <p>🏆 Competizione: {{ partita.competizione }}</p>
+      <p>👨‍⚖️ Arbitro: {{ partita.arbitro }}</p>
+      <p>⛅ Meteo: {{ partita.meteo }}</p>
+      <p>📊 Giornata: {{ partita.giornata }}</p>
+    </div>
+
+    <div class="sezione" *ngIf="eventi.length > 0">
+      <h2>⚡ Eventi</h2>
+      <div *ngFor="let e of eventi" class="evento-card">
+        <span class="tipo-evento">{{ e.tipo_evento }}</span>
+        <span>{{ e.squadra }}</span>
+      </div>
+    </div>
+
+    <div class="sezione" *ngIf="infortuni.length > 0">
+      <h2>🏥 Infortuni</h2>
+      <div *ngFor="let inf of infortuni" class="infortunio-card">
+        <p>{{ inf.tipo_infortunio }} — {{ inf.parte_corpo }}</p>
+        <p>⏱️ {{ inf.giorni_prognosi }} giorni di prognosi</p>
+      </div>
+    </div>
+  </div>
+</div>

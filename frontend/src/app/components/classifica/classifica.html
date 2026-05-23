@@ -1,1 +1,35 @@
-<p>classifica works!</p>
+<div class="container">
+  <h1>📊 Classifica</h1>
+
+  <div *ngIf="loading" class="loading">Caricamento...</div>
+  <div *ngIf="errore" class="errore">{{ errore }}</div>
+
+  <table *ngIf="!loading && classifica.length > 0">
+    <thead>
+      <tr>
+        <th>Competizione</th>
+        <th>Stagione</th>
+        <th>PG</th>
+        <th>V</th>
+        <th>P</th>
+        <th>S</th>
+        <th>GF</th>
+        <th>GS</th>
+        <th>DR</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of classifica">
+        <td>{{ c.competizione }}</td>
+        <td>{{ c.stagione }}</td>
+        <td>{{ c.partite_giocate }}</td>
+        <td>{{ c.vittorie }}</td>
+        <td>{{ c.pareggi }}</td>
+        <td>{{ c.sconfitte }}</td>
+        <td>{{ c.gol_fatti }}</td>
+        <td>{{ c.gol_subiti }}</td>
+        <td>{{ c.differenza_reti }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
