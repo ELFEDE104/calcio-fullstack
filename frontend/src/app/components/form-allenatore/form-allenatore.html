@@ -1,0 +1,63 @@
+<div class="container">
+  <a routerLink="/squadre" class="back">← Torna alle squadre</a>
+
+  <h1>{{ modalita === 'inserimento' ? '➕ Nuovo Allenatore' : '✏️ Modifica Allenatore' }}</h1>
+
+  <div *ngIf="successo" class="alert-successo">✅ {{ successo }}</div>
+  <div *ngIf="errore" class="alert-errore">❌ {{ errore }}</div>
+  <div *ngIf="loading" class="loading">Caricamento...</div>
+
+  <div class="form-card">
+
+    <div class="form-row">
+      <div class="form-gruppo">
+        <label>Nome *</label>
+        <input type="text" [(ngModel)]="allenatore.nome" placeholder="Es. Simone" />
+      </div>
+      <div class="form-gruppo">
+        <label>Cognome *</label>
+        <input type="text" [(ngModel)]="allenatore.cognome" placeholder="Es. Inzaghi" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-gruppo">
+        <label>Età *</label>
+        <input type="number" [(ngModel)]="allenatore.eta" placeholder="Es. 48" />
+      </div>
+      <div class="form-gruppo">
+        <label>Trofei Vinti</label>
+        <input type="number" [(ngModel)]="allenatore.trofei_vinti" />
+      </div>
+    </div>
+
+    <div class="form-gruppo">
+      <label>Nazionalità *</label>
+      <input type="text" [(ngModel)]="allenatore.nazionalita" placeholder="Es. Italiana" />
+    </div>
+
+    <div class="form-gruppo">
+      <label>Squadra *</label>
+      <select [(ngModel)]="allenatore.squadra">
+        <option value="">Seleziona squadra...</option>
+        <option *ngFor="let s of squadre" [value]="s.nome_squadra">
+          {{ s.nome_squadra }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-azioni">
+      <button class="btn-salva" (click)="salva()" [disabled]="loading">
+        {{ modalita === 'inserimento' ? 'Inserisci' : 'Salva modifiche' }}
+      </button>
+      <button
+        *ngIf="modalita === 'modifica'"
+        class="btn-elimina"
+        (click)="elimina()"
+        [disabled]="loading">
+        🗑️ Elimina allenatore
+      </button>
+    </div>
+
+  </div>
+</div>

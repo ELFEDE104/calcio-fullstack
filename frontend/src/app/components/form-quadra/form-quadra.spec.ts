@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavbarComponent } from './navbar';
+import { FormQuadra } from './form-quadra';
 
-describe('Navbar', () => {
-  let component: NavbarComponent;
-  let fixture: ComponentFixture<NavbarComponent>;
+describe('FormQuadra', () => {
+  let component: FormQuadra;
+  let fixture: ComponentFixture<FormQuadra>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NavbarComponent],
-    }).compileComponents();
+      imports: [FormQuadra]
+    })
+    .compileComponents();
 
-    fixture = TestBed.createComponent(NavbarComponent);
+    fixture = TestBed.createComponent(FormQuadra);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

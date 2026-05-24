@@ -17,7 +17,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   // =============================================
-  // SQUADRE
+  // SQUADRE — GET (Laura)
   // =============================================
 
   getSquadre(nome?: string): Observable<Squadra[]> {
@@ -31,7 +31,23 @@ export class ApiService {
   }
 
   // =============================================
-  // GIOCATORI
+  // SQUADRE — CRUD (Federico)
+  // =============================================
+
+  inserisciSquadra(squadra: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/squadre`, squadra);
+  }
+
+  modificaSquadra(nome: string, squadra: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/squadre/${nome}`, squadra);
+  }
+
+  eliminaSquadra(nome: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/squadre/${nome}`);
+  }
+
+  // =============================================
+  // GIOCATORI — GET (Laura)
   // =============================================
 
   getGiocatori(squadra?: string, ruolo?: string, nazionalita?: string): Observable<Giocatore[]> {
@@ -47,7 +63,47 @@ export class ApiService {
   }
 
   // =============================================
-  // PARTITE
+  // GIOCATORI — CRUD (Federico)
+  // =============================================
+
+  inserisciGiocatore(giocatore: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/giocatori`, giocatore);
+  }
+
+  modificaGiocatore(id: number, giocatore: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/giocatori/${id}`, giocatore);
+  }
+
+  eliminaGiocatore(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/giocatori/${id}`);
+  }
+
+  // =============================================
+  // ALLENATORI — GET (Laura)
+  // =============================================
+
+  getAllenatori(): Observable<Allenatore[]> {
+    return this.http.get<Allenatore[]>(`${this.apiUrl}/allenatori`);
+  }
+
+  // =============================================
+  // ALLENATORI — CRUD (Federico)
+  // =============================================
+
+  inserisciAllenatore(allenatore: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/allenatori`, allenatore);
+  }
+
+  modificaAllenatore(id: number, allenatore: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/allenatori/${id}`, allenatore);
+  }
+
+  eliminaAllenatore(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/allenatori/${id}`);
+  }
+
+  // =============================================
+  // PARTITE — GET (Laura)
   // =============================================
 
   getPartite(squadra?: string): Observable<Partita[]> {
@@ -61,14 +117,10 @@ export class ApiService {
   }
 
   // =============================================
-  // CLASSIFICA E ALLENATORI
+  // CLASSIFICA
   // =============================================
 
   getClassifica(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/classifica`);
-  }
-
-  getAllenatori(): Observable<Allenatore[]> {
-    return this.http.get<Allenatore[]>(`${this.apiUrl}/allenatori`);
   }
 }

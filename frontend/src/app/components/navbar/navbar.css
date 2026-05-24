@@ -1,0 +1,13 @@
+nav a.btn-nuovo {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.5);
+  color: var(--bianco);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+
+nav a.btn-nuovo:hover {
+  background: var(--bianco);
+  color: var(--verde-scuro);
+}

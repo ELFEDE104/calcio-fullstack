@@ -1,0 +1,76 @@
+<div class="container">
+  <a routerLink="/giocatori" class="back">← Torna ai giocatori</a>
+
+  <h1>{{ modalita === 'inserimento' ? '➕ Nuovo Giocatore' : '✏️ Modifica Giocatore' }}</h1>
+
+  <div *ngIf="successo" class="alert-successo">✅ {{ successo }}</div>
+  <div *ngIf="errore" class="alert-errore">❌ {{ errore }}</div>
+  <div *ngIf="loading" class="loading">Caricamento...</div>
+
+  <div class="form-card" *ngIf="!loading || modalita === 'inserimento'">
+
+    <div class="form-gruppo" *ngIf="modalita === 'inserimento'">
+      <label>ID Giocatore *</label>
+      <input type="number" [(ngModel)]="giocatore.id_giocatore" placeholder="Es. 51" />
+    </div>
+
+    <div class="form-row">
+      <div class="form-gruppo">
+        <label>Nome *</label>
+        <input type="text" [(ngModel)]="giocatore.nome" placeholder="Es. Lautaro" />
+      </div>
+      <div class="form-gruppo">
+        <label>Cognome *</label>
+        <input type="text" [(ngModel)]="giocatore.cognome" placeholder="Es. Martinez" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-gruppo">
+        <label>Età *</label>
+        <input type="number" [(ngModel)]="giocatore.eta" placeholder="Es. 26" />
+      </div>
+      <div class="form-gruppo">
+        <label>Numero Maglia *</label>
+        <input type="number" [(ngModel)]="giocatore.num_maglia" placeholder="Es. 10" />
+      </div>
+    </div>
+
+    <div class="form-gruppo">
+      <label>Ruolo *</label>
+      <select [(ngModel)]="giocatore.ruolo">
+        <option value="">Seleziona ruolo...</option>
+        <option *ngFor="let r of ruoli" [value]="r">{{ r }}</option>
+      </select>
+    </div>
+
+    <div class="form-gruppo">
+      <label>Squadra *</label>
+      <select [(ngModel)]="giocatore.squadra">
+        <option value="">Seleziona squadra...</option>
+        <option *ngFor="let s of squadre" [value]="s.nome_squadra">
+          {{ s.nome_squadra }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-gruppo">
+      <label>Nazionalità *</label>
+      <input type="text" [(ngModel)]="giocatore.nazionalita" placeholder="Es. Italiana" />
+    </div>
+
+    <div class="form-azioni">
+      <button class="btn-salva" (click)="salva()" [disabled]="loading">
+        {{ modalita === 'inserimento' ? 'Inserisci' : 'Salva modifiche' }}
+      </button>
+      <button
+        *ngIf="modalita === 'modifica'"
+        class="btn-elimina"
+        (click)="elimina()"
+        [disabled]="loading">
+        🗑️ Elimina giocatore
+      </button>
+    </div>
+
+  </div>
+</div>

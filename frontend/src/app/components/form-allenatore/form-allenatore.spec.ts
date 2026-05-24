@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavbarComponent } from './navbar';
+import { FormAllenatore } from './form-allenatore';
 
-describe('Navbar', () => {
-  let component: NavbarComponent;
-  let fixture: ComponentFixture<NavbarComponent>;
+describe('FormAllenatore', () => {
+  let component: FormAllenatore;
+  let fixture: ComponentFixture<FormAllenatore>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NavbarComponent],
-    }).compileComponents();
+      imports: [FormAllenatore]
+    })
+    .compileComponents();
 
-    fixture = TestBed.createComponent(NavbarComponent);
+    fixture = TestBed.createComponent(FormAllenatore);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
