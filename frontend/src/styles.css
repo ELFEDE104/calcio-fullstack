@@ -490,3 +490,168 @@ tbody tr:last-child td {
     font-size: 1.5rem;
   }
 }
+
+/* =============================================
+   FORM CARD
+   ============================================= */
+.form-card {
+  background: var(--bianco);
+  border-radius: var(--raggio);
+  padding: 30px;
+  box-shadow: var(--ombra);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.form-gruppo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.form-gruppo label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--verde-scuro);
+}
+
+.form-gruppo input,
+.form-gruppo select,
+.form-gruppo textarea {
+  padding: 10px 14px;
+  border: var(--bordo);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: var(--bianco);
+  width: 100%;
+}
+
+.form-gruppo input:focus,
+.form-gruppo select:focus,
+.form-gruppo textarea:focus {
+  border-color: var(--verde);
+  box-shadow: 0 0 0 3px rgba(26, 122, 60, 0.15);
+}
+
+.form-gruppo input:disabled,
+.form-gruppo select:disabled {
+  background: var(--grigio-chiaro);
+  cursor: not-allowed;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* =============================================
+   BOTTONI FORM
+   ============================================= */
+.form-azioni {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.btn-salva {
+  padding: 12px 28px;
+  background: var(--verde);
+  color: var(--bianco);
+  border: none;
+  border-radius: var(--raggio);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.1s;
+  flex: 1;
+}
+
+.btn-salva:hover:not(:disabled) {
+  background: var(--verde-scuro);
+  transform: translateY(-1px);
+}
+
+.btn-salva:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-elimina {
+  padding: 12px 28px;
+  background: transparent;
+  color: var(--rosso);
+  border: 2px solid var(--rosso);
+  border-radius: var(--raggio);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-elimina:hover:not(:disabled) {
+  background: var(--rosso);
+  color: var(--bianco);
+}
+
+.btn-elimina:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =============================================
+   ALERT FEEDBACK
+   ============================================= */
+.alert-successo {
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 14px 20px;
+  border-radius: var(--raggio);
+  border-left: 4px solid #2e7d32;
+  margin-bottom: 20px;
+  font-weight: 600;
+  animation: slideIn 0.3s ease;
+}
+
+.alert-errore {
+  background: #ffebee;
+  color: var(--rosso);
+  padding: 14px 20px;
+  border-radius: var(--raggio);
+  border-left: 4px solid var(--rosso);
+  margin-bottom: 20px;
+  font-weight: 600;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* =============================================
+   RESPONSIVE FORM
+   ============================================= */
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-card {
+    padding: 20px;
+  }
+
+  .form-azioni {
+    flex-direction: column;
+  }
+
+  .btn-salva,
+  .btn-elimina {
+    width: 100%;
+    text-align: center;
+  }
+}
