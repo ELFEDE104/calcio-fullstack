@@ -9,12 +9,14 @@ from flask import Flask
 from flask_cors import CORS
 from config import FLASK_HOST, FLASK_PORT, FLASK_DEBUG
 from routes_visualizzazione import visualizzazione_bp
+from routes_gestione import gestione_bp
 
 app = Flask(__name__)
 CORS(app)
 
 # Registra i blueprint
 app.register_blueprint(visualizzazione_bp)
+app.register_blueprint(gestione_bp)
 
 # Rotta di test
 @app.route('/')
