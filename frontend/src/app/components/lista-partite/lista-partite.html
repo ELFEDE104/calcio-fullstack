@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>📅 Partite</h1>
+
+  <div class="filtri">
+    <input
+      type="text"
+      [(ngModel)]="filtroSquadra"
+      placeholder="Filtra per squadra..."
+      (change)="caricaPartite()"
+    />
+  </div>
+
+  <div *ngIf="loading" class="loading">Caricamento...</div>
+  <div *ngIf="errore" class="errore">{{ errore }}</div>
+
+  <div class="lista">
+    <div *ngFor="let p of partite" class="card-partita">
+      <div class="squadre">
+        <span>{{ p.squadra }}</span>
+        <span class="vs">VS</span>
+        <span>{{ p.squadra_ospite }}</span>
+      </div>
+      <div class="info">
+        <span>📅 {{ p.data_partita }}</span>
+        <span>🏟️ {{ p.nome_stadio }}</span>
+        <span>🏆 {{ p.competizione }}</span>
+      </div>
+      <a [routerLink]="['/partite', p.id_partita]" class="btn">Dettaglio →</a>
+    </div>
+  </div>
+</div>

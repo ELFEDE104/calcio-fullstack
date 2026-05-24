@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>🏆 Squadre</h1>
+
+  <div class="filtri">
+    <input
+      type="text"
+      [(ngModel)]="filtroNome"
+      placeholder="Cerca squadra..."
+      (keyup.enter)="cercaSquadre()"
+    />
+    <button (click)="cercaSquadre()">Cerca</button>
+  </div>
+
+  <div *ngIf="loading" class="loading">Caricamento...</div>
+  <div *ngIf="errore" class="errore">{{ errore }}</div>
+
+  <div class="lista">
+    <div *ngFor="let squadra of squadre" class="card">
+      <h2>{{ squadra.nome_squadra }}</h2>
+      <p>🏅 Ranking: {{ squadra.ranking }}</p>
+      <p>👤 Capitano: {{ squadra.capitano }}</p>
+      <p>🏆 Trofei: {{ squadra.trofei_vinti }}</p>
+      <p>📅 Fondata: {{ squadra.anno_fondazione }}</p>
+      <a [routerLink]="['/squadre', squadra.nome_squadra]" class="btn">
+        Dettaglio →
+      </a>
+    </div>
+  </div>
+</div>

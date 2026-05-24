@@ -1,0 +1,49 @@
+<div class="container">
+  <h1>⚽ Giocatori</h1>
+
+  <div class="filtri">
+    <input
+      type="text"
+      [(ngModel)]="filtroSquadra"
+      placeholder="Filtra per squadra..."
+      (change)="caricaGiocatori()"
+    />
+    <select [(ngModel)]="filtroRuolo" (change)="caricaGiocatori()">
+      <option *ngFor="let r of ruoli" [value]="r">
+        {{ r || 'Tutti i ruoli' }}
+      </option>
+    </select>
+  </div>
+
+  <div *ngIf="loading" class="loading">Caricamento...</div>
+  <div *ngIf="errore" class="errore">{{ errore }}</div>
+
+  <table *ngIf="!loading && giocatori.length > 0">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Ruolo</th>
+        <th>Squadra</th>
+        <th>Nazionalità</th>
+        <th>Dettaglio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let g of giocatori">
+        <td>{{ g.num_maglia }}</td>
+        <td>{{ g.nome }} {{ g.cognome }}</td>
+        <td>{{ g.ruolo }}</td>
+        <td>
+          <a [routerLink]="['/squadre', g.squadra]">{{ g.squadra }}</a>
+        </td>
+        <td>{{ g.nazionalita }}</td>
+        <td>
+          <a [routerLink]="['/giocatori', g.id_giocatore]" class="btn">→</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="!loading && giocatori.length === 0">Nessun giocatore trovato.</p>
+</div>
