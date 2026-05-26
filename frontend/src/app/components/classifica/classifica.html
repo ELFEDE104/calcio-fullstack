@@ -1,9 +1,7 @@
 <div class="container">
   <h1>📊 Classifica</h1>
-
   <div *ngIf="loading" class="loading">Caricamento...</div>
   <div *ngIf="errore" class="errore">{{ errore }}</div>
-
   <table *ngIf="!loading && classifica.length > 0">
     <thead>
       <tr>
@@ -32,4 +30,5 @@
       </tr>
     </tbody>
   </table>
+  <p *ngIf="!loading && classifica.length === 0">Nessun dato disponibile.</p>
 </div>

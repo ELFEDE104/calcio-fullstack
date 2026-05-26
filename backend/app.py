@@ -5,7 +5,7 @@ Punto di avvio del server Flask.
 Registra tutti i blueprint delle rotte.
 """
 
-from flask import Flask
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from config import FLASK_HOST, FLASK_PORT, FLASK_DEBUG
 from routes_visualizzazione import visualizzazione_bp
@@ -14,11 +14,16 @@ from routes_gestione import gestione_bp
 app = Flask(__name__)
 CORS(app)
 
-# Registra i blueprint
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    return response
+
 app.register_blueprint(visualizzazione_bp)
 app.register_blueprint(gestione_bp)
 
-# Rotta di test
 @app.route('/')
 def index():
     return {'messaggio': 'API Calcio funzionante ✅'}, 200

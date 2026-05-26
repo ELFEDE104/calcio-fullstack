@@ -172,9 +172,14 @@ def get_partite():
         cursor = conn.cursor()
 
         query = """
-            SELECT p.*, c.nome as competizione
+            SELECT p.id_partita, p.meteo,
+                   CAST(p.orario_partita AS CHAR) as orario_partita,
+                   p.squadra, p.squadra_ospite, p.arbitro,
+                   CAST(p.data_partita AS CHAR) as data_partita,
+                   p.id_competizione, p.giornata, p.risultato,
+                   p.nome_stadio, c.nome as competizione
             FROM Partita p
-            JOIN Competizione c ON p.id_competizione = c.id_competizione
+            LEFT JOIN Competizione c ON p.id_competizione = c.id_competizione
             WHERE 1=1
         """
         params = []
@@ -194,7 +199,6 @@ def get_partite():
     except Exception as e:
         return jsonify({'errore': str(e)}), 500
 
-
 # Dettaglio partita con eventi e infortuni
 @visualizzazione_bp.route('/partite/<int:id_partita>', methods=['GET'])
 def get_dettaglio_partita(id_partita):
@@ -203,9 +207,14 @@ def get_dettaglio_partita(id_partita):
         cursor = conn.cursor()
 
         cursor.execute("""
-            SELECT p.*, c.nome as competizione
+            SELECT p.id_partita, p.meteo,
+                   CAST(p.orario_partita AS CHAR) as orario_partita,
+                   p.squadra, p.squadra_ospite, p.arbitro,
+                   CAST(p.data_partita AS CHAR) as data_partita,
+                   p.id_competizione, p.giornata, p.risultato,
+                   p.nome_stadio, c.nome as competizione
             FROM Partita p
-            JOIN Competizione c ON p.id_competizione = c.id_competizione
+            LEFT JOIN Competizione c ON p.id_competizione = c.id_competizione
             WHERE p.id_partita = %s
         """, (id_partita,))
         partita = cursor.fetchone()
