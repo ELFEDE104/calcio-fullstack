@@ -1,0 +1,32 @@
+{
+  "/squadre": {
+    "target": "https://refactored-spork-x5v77qprj7w7c9jx-5000.app.github.dev",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/giocatori": {
+    "target": "https://refactored-spork-x5v77qprj7w7c9jx-5000.app.github.dev",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/partite": {
+    "target": "https://refactored-spork-x5v77qprj7w7c9jx-5000.app.github.dev",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/classifica": {
+    "target": "https://refactored-spork-x5v77qprj7w7c9jx-5000.app.github.dev",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/allenatori": {
+    "target": "https://refactored-spork-x5v77qprj7w7c9jx-5000.app.github.dev",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/contratti": {
+    "target": "https://refactored-spork-x5v77qprj7w7c9jx-5000.app.github.dev",
+    "secure": false,
+    "changeOrigin": true
+  }
+}
